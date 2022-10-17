@@ -47,7 +47,17 @@ public class LobbyManger : MonoBehaviourPunCallbacks
         btnStartGame = GameObject.Find("按鈕開始遊戲").GetComponent<Button>();
         btnExitGame = GameObject.Find("按鈕離開遊戲").GetComponent<Button>();
 
+        btnExitGame.onClick.AddListener(ExitGame);
+        //photoView 遠端同步客戶端("RPC 方法",針對哪些玩家);
+        btnStartGame.onClick.AddListener(() => photonView.RPC("RPCStartGame", RpcTarget.All));
+
         PhotonNetwork.ConnectUsingSettings();
+    }
+    //遠端同步客戶端方法
+    [PunRPC]
+    private void RPCStartGame()
+    {
+        PhotonNetwork.LoadLevel("遊戲場景");
     }
 
     /// <summary>
@@ -67,7 +77,11 @@ public class LobbyManger : MonoBehaviourPunCallbacks
 
         //結束編輯 : 按下Enter 或在空白處點一下
         //輸入欄位,結束編輯,添加監聽((輸入欄位的輸入字串) => 儲存)
-        inputFieldPlayerName.onEndEdit.AddListener((input) => namePlayer = input);
+        inputFieldPlayerName.onEndEdit.AddListener((input) =>
+        {
+            namePlayer = input;
+            PhotonNetwork.NickName = namePlayer;
+         });
         inputFieldCreateRoomName.onEndEdit.AddListener((input) => nameCreateRoom = input);
         inputFieldJoinRoomName.onEndEdit.AddListener((input) => nameJoinRoom = input);
 
@@ -122,7 +136,7 @@ public class LobbyManger : MonoBehaviourPunCallbacks
     private void ExitGame()
     {
         PhotonNetwork.LeaveRoom();
-        
+
         groupRoom.alpha = 0;
         groupRoom.interactable = false;
         groupRoom.blocksRaycasts = false;

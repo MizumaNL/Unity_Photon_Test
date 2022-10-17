@@ -16,6 +16,9 @@ GameObject:
   - component: {fileID: 3925906165437965530}
   - component: {fileID: 3925906165437965531}
   - component: {fileID: 3925906165437965524}
+  - component: {fileID: 4316764885440335164}
+  - component: {fileID: 3308085872811557514}
+  - component: {fileID: 4474581361365184485}
   m_Layer: 0
   m_Name: "\u8B8A\u614B\u9F8D"
   m_TagString: Untagged
@@ -126,12 +129,12 @@ Rigidbody2D:
   m_Mass: 1
   m_LinearDrag: 0
   m_AngularDrag: 0.05
-  m_GravityScale: 1
+  m_GravityScale: 1.3
   m_Material: {fileID: 0}
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 0
+  m_Constraints: 4
 --- !u!70 &3925906165437965529
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -145,7 +148,7 @@ CapsuleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.48, y: -0.12}
+  m_Offset: {x: 0.03, y: -0.12}
   m_Size: {x: 0.56, y: 0.74}
   m_Direction: 0
 --- !u!114 &3925906165437965530
@@ -169,6 +172,8 @@ MonoBehaviour:
   ObservedComponents:
   - {fileID: 3925906165437965531}
   - {fileID: 3925906165437965524}
+  - {fileID: 4316764885440335164}
+  - {fileID: 6037259603132659661}
   sceneViewId: 0
   InstantiationId: 0
   isRuntimeInstantiated: 0
@@ -209,6 +214,56 @@ MonoBehaviour:
   m_SynchronizeAngularVelocity: 0
   m_TeleportEnabled: 0
   m_TeleportIfDistanceGreaterThan: 3
+--- !u!114 &4316764885440335164
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3925906165437965520}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 627855c7f81362d41938ffe0b1475957, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_SynchronizePosition: 1
+  m_SynchronizeRotation: 1
+  m_SynchronizeScale: 0
+  m_UseLocal: 1
+--- !u!114 &3308085872811557514
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3925906165437965520}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9df83bedfe0639046abd82a47146ef60, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: 5
+  groundOffset: {x: 0.03, y: -0.56, z: 0}
+  groundSize: {x: 0.43, y: 0.09, z: 0}
+  jump: 450
+--- !u!114 &4474581361365184485
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3925906165437965520}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 541a76f9c03874323b5154b14ac00427, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spline: {fileID: 0}
+  Speed: 0
+  lookForward: 0
+  reverse: 0
+  currentDistance: 0
+  currentClampedDistance: 0
 --- !u!1 &8331080815097960548
 GameObject:
   m_ObjectHideFlags: 0
@@ -221,6 +276,7 @@ GameObject:
   - component: {fileID: 9145350088820103090}
   - component: {fileID: 3707715745444154910}
   - component: {fileID: 6299277835078046344}
+  - component: {fileID: 6037259603132659661}
   m_Layer: 0
   m_Name: "\u756B\u5E03\u73A9\u5BB6\u540D\u7A31"
   m_TagString: Untagged
@@ -246,7 +302,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0.42, y: 0.74}
+  m_AnchoredPosition: {x: 0.06, y: 0.74}
   m_SizeDelta: {x: 335, y: 74.7}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!223 &9145350088820103090
@@ -310,6 +366,22 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
+--- !u!114 &6037259603132659661
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8331080815097960548}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 627855c7f81362d41938ffe0b1475957, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_SynchronizePosition: 0
+  m_SynchronizeRotation: 1
+  m_SynchronizeScale: 0
+  m_UseLocal: 1
 --- !u!1 &8442999270833134879
 GameObject:
   m_ObjectHideFlags: 0
