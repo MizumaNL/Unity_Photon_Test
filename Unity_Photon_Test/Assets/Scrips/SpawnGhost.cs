@@ -7,13 +7,16 @@ public class SpawnGhost : MonoBehaviour
     [SerializeField, Header("┭강")]
     private GameObject prefabGhost;
     [SerializeField, Header("Ν┬픚쾤"), Range(0, 5)]
-    private float intercalSpawn = 2.5f;
+    private float intercalSpawn = 1.5f;
     [SerializeField, Header("Ν┬헕")]
     private Transform[] spawnPoints;
 
     private void Awake()
     {
-        InvokeRepeating("Spawn", 0, intercalSpawn);
+        if (PhotonNetwork.IsMasterClient)
+        {
+            InvokeRepeating("Spawn", 0, intercalSpawn);
+        }       
     }
 
     private void Spawn()
